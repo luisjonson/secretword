@@ -16,7 +16,7 @@ import { GameOver } from "./components/GameOver"
 const stages = [
   { id: 1, name: "start" },
   { id: 2, name: "game" },
-  { id: 3, name: "end" },
+  { id: 3, name: "and" },
 ]
 
 
@@ -35,12 +35,10 @@ function App() {
     setGameStage(stages[2].name)
   }
 
-  //restarts rthe hame 
-  const retry =() =>{
-    setGameStage(stages[1].name)
+  //restarts the game 
+  const retry = () =>{
+    setGameStage(stages[0].name)
   }
-
-  console.log(words)
 
   return (
     < div className="App">
