@@ -29,19 +29,25 @@ function App() {
   const [pickedCategory, setPickedCategory] = useState("")
   const [letters, setLetters] = useState([])
 
+  const [guessedLtLetters, setGuessedLtLetters] = useState([])
+  const [wrongletters, setWrongletters] = useState([])
+  const [guesses, setGuesses] = useState(3)
+  const [score, getScore] = useState(0)
+
+
   const pickWordAndCategory = () => {
     //pick a random category
     const categories = Object.keys(words)
-    const category = categories[Math.floor( Math.random() * Object.keys(categories).length)]
+    const category = categories[Math.floor(Math.random() * Object.keys(categories).length)]
 
     console.log(category)
-    
+
     //pick a random word
-    const word = words[category][Math.floor( Math.random() * words[category].length)]
+    const word = words[category][Math.floor(Math.random() * words[category].length)]
     console.log(word)
-    
-    return {word, category}
-    
+
+    return { word, category }
+
   }
   //starts the secret word game
   const startGame = () => {
@@ -49,15 +55,15 @@ function App() {
     const { word, category } = pickWordAndCategory()
 
     // create an array of letters
-      let wordLetters = word.split("")
-      wordLetters = wordLetters.map((l) => l.toLowerCase())
+    let wordLetters = word.split("")
+    wordLetters = wordLetters.map((l) => l.toLowerCase())
     console.log(word, category)
     console.log(wordLetters)
 
     // fill states
     setPickedWord(word)
     setPickedCategory(category)
-    setLetters(letters)
+    setLetters(wordLetters)
 
     setGameStage(stages[1].name)
   }
@@ -68,14 +74,25 @@ function App() {
   }
 
   //restarts the game 
-  const retry = () =>{
+  const retry = () => {
     setGameStage(stages[0].name)
   }
 
   return (
     < div className="App">
       {gameStage === 'start' && <StartScreen startGame={startGame} />}
-      {gameStage === 'game' && <Game verifyLetter={verifyLetter} />}
+      {gameStage === 'game' && (
+        <Game 
+          verifyLetter={verifyLetter} 
+          pickedword={pickedword}
+          pickedCategory={pickedCategory} 
+          letters={letters} 
+          guessedLtLetters={guessedLtLetters}
+          wrongletters={wrongletters}
+          guesses={guesses}
+          score={score}
+        />
+      )}
       {gameStage === 'and' && <GameOver retry={retry} />}
     </div>
   )
