@@ -6,7 +6,7 @@ export const Game = ({
   pickedword,
   pickedCategory,
   letters,
-  guessedLtLetters,
+  guessedLetters,
   wrongletters,
   guesses,
   score 
@@ -33,7 +33,7 @@ export const Game = ({
       <div className="worContainer">
 
         {letters.map((letter, i) => (
-          guessedLtLetters.includes(letter) ? (
+          guessedLetters.includes(letter) ? (
             <span key={i} className="letter">{letter}</span>
 
           ) : (

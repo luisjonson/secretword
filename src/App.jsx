@@ -29,7 +29,7 @@ function App() {
   const [pickedCategory, setPickedCategory] = useState("")
   const [letters, setLetters] = useState([])
 
-  const [guessedLtLetters, setGuessedLtLetters] = useState([])
+  const [guessedLetters, setGuessedLetters] = useState([])
   const [wrongletters, setWrongletters] = useState([])
   const [guesses, setGuesses] = useState(3)
   const [score, getScore] = useState(0)
@@ -87,7 +87,7 @@ function App() {
           pickedword={pickedword}
           pickedCategory={pickedCategory} 
           letters={letters} 
-          guessedLtLetters={guessedLtLetters}
+          guessedLetters={guessedLetters}
           wrongletters={wrongletters}
           guesses={guesses}
           score={score}
