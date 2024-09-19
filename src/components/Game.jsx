@@ -15,7 +15,7 @@ export const Game = ({
     const letterInputRef = useRef(null)
 
     const handleSubmit = (e) =>{
-      e.preventDefault();
+      e.preventDefault()
       verifyLetter(letter)
       setLetter("")
       letterInputRef.current.focus();
@@ -59,9 +59,9 @@ export const Game = ({
       </div>
       <div className="divwrongLttersContainer">
         <p>Letras já ultilizadas:</p>
-        {wrongletters.map((letter) => (
+        {wrongletters.map((letter, i) => (
           <span key={i}>{letter}, </span>
-        )) }
+        ))}
       </div>
     </div>
   )

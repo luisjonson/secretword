@@ -57,21 +57,45 @@ function App() {
     // create an array of letters
     let wordLetters = word.split("")
     wordLetters = wordLetters.map((l) => l.toLowerCase())
-    console.log(word, category)
-    console.log(wordLetters)
-
+    
     // fill states
     setPickedWord(word)
     setPickedCategory(category)
     setLetters(wordLetters)
+    console.log(word, category)
+    console.log(wordLetters)
 
     setGameStage(stages[1].name)
   }
 
   //process the letter input
   const verifyLetter = (letter) => {
-    console.log(letter)
+    const normalizedLetter = letter.toLowerCase()
+  
+
+    //check if letter has already been utilized
+    if(guessedLetters.includes(normalizedLetter) 
+    || wrongletters.includes(normalizedLetter)){
+      return;
+    }
+
+    // push guess letter or remove a guess
+    if(letters.includes(normalizedLetter)){
+      setGuessedLetters((actualGuessedLetters) =>[
+        ...actualGuessedLetters,
+        normalizedLetter,
+        
+      ])
+    }else{
+      setWrongletters((actualWrongLetters) =>[
+        ...actualWrongLetters,
+        normalizedLetter,
+       
+      ])
+    }
   }
+  console.log(guessedLetters)
+  console.log(wrongletters)
 
   //restarts the game 
   const retry = () => {
@@ -82,11 +106,11 @@ function App() {
     < div className="App">
       {gameStage === 'start' && <StartScreen startGame={startGame} />}
       {gameStage === 'game' && (
-        <Game 
-          verifyLetter={verifyLetter} 
+        <Game
+          verifyLetter={verifyLetter}
           pickedword={pickedword}
-          pickedCategory={pickedCategory} 
-          letters={letters} 
+          pickedCategory={pickedCategory}
+          letters={letters}
           guessedLetters={guessedLetters}
           wrongletters={wrongletters}
           guesses={guesses}
